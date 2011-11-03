@@ -1,3 +1,9 @@
+# revision 22198
+# category Package
+# catalog-ctan /systems/e-tex
+# catalog-date 2010-02-06 00:03:35 +0100
+# catalog-license knuth
+# catalog-version 2.1
 Name:		texlive-etex
 Version:	2.1
 Release:	1
@@ -52,6 +58,7 @@ current TeX distributions) assume e-TeX functionality.
 %doc %{_texmfdistdir}/doc/etex/base/webmerge.tex
 %doc %{_mandir}/man1/etex.1*
 %doc %{_texmfdir}/doc/man/man1/etex.man1.pdf
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -64,3 +71,5 @@ mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_mandir}/man1
 mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
