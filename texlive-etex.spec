@@ -1,12 +1,12 @@
-# revision 22198
+# revision 31600
 # category Package
 # catalog-ctan /systems/e-tex
-# catalog-date 2010-02-06 00:03:35 +0100
+# catalog-date 2012-03-09 15:12:11 +0100
 # catalog-license knuth
 # catalog-version 2.1
 Name:		texlive-etex
 Version:	2.1
-Release:	2
+Release:	3
 Summary:	An extended version of TeX, from the NTS project
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/systems/e-tex
@@ -21,9 +21,11 @@ Requires(post):	texlive-kpathsea
 %description
 An extended version of TeX (which is capable of running as if
 it were TeX unmodified). E-TeX has been specified by the LaTeX
-team as the engine for the development of LaTeX, in the
+team as the engine for the development of LaTeX 2e, in the
 immediate future; as a result, LaTeX programmers may (in all
 current TeX distributions) assume e-TeX functionality.
+Development versions of e-TeX are to be found in the TeX live
+source repository.
 
 %post
     %{_sbindir}/texlive.post
@@ -35,6 +37,8 @@ current TeX distributions) assume e-TeX functionality.
 
 #-----------------------------------------------------------------------
 %files
+%{_texmfdistdir}/fonts/source/public/etex/xbmc10.mf
+%{_texmfdistdir}/fonts/tfm/public/etex/xbmc10.tfm
 %{_texmfdistdir}/tex/plain/etex/etex.src
 %{_texmfdistdir}/tex/plain/etex/etexdefs.lib
 %doc %{_texmfdistdir}/doc/etex/base/NTS-FAQ
@@ -48,7 +52,7 @@ current TeX distributions) assume e-TeX functionality.
 %doc %{_texmfdistdir}/doc/etex/base/nts-group.html
 %doc %{_texmfdistdir}/doc/etex/base/webmerge.tex
 %doc %{_mandir}/man1/etex.1*
-%doc %{_texmfdir}/doc/man/man1/etex.man1.pdf
+%doc %{_texmfdistdir}/doc/man/man1/etex.man1.pdf
 
 #-----------------------------------------------------------------------
 %prep
@@ -57,21 +61,7 @@ current TeX distributions) assume e-TeX functionality.
 %build
 
 %install
-mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
+mkdir -p %{buildroot}%{_texmfdistdir}
+cp -fpar fonts tex doc %{buildroot}%{_texmfdistdir}
 mkdir -p %{buildroot}%{_mandir}/man1
-mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
-
-
-%changelog
-* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 2.1-2
-+ Revision: 751586
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 2.1-1
-+ Revision: 718375
-- texlive-etex
-- texlive-etex
-- texlive-etex
-- texlive-etex
-
+mv %{buildroot}%{_texmfdistdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
