@@ -6,7 +6,7 @@
 # catalog-version 2.1
 Name:		texlive-etex
 Version:	2.1
-Release:	11
+Release:	12
 Summary:	An extended version of TeX, from the NTS project
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/systems/e-tex
