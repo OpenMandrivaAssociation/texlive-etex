@@ -1,6 +1,6 @@
 Name:		texlive-etex
 Version:	56291
-Release:	1
+Release:	2
 Summary:	An extended version of TeX, from the NTS project
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/systems/e-tex
