@@ -3,7 +3,7 @@ Version:	56291
 Release:	2
 Summary:	An extended version of TeX, from the NTS project
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/systems/e-tex
+URL:		https://www.ctan.org/tex-archive/systems/e-tex
 License:	KNUTH
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/etex.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/etex.doc.r%{version}.tar.xz
