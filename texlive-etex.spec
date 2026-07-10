@@ -1,61 +1,29 @@
-Name:		texlive-etex
-Version:	56291
-Release:	2
+%global tl_name etex
+%global tl_revision 77830
+
+Name:		texlive-%{tl_name}
+Version:	%{tl_revision}
+Release:	1
 Summary:	An extended version of TeX, from the NTS project
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/systems/e-tex
-License:	KNUTH
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/etex.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/etex.doc.r%{version}.tar.xz
+URL:		https://www.ctan.org/pkg/etex
+License:	knuth
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/etex.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/etex.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-An extended version of TeX (which is capable of running as if
-it were TeX unmodified). E-TeX has been specified by the LaTeX
-team as the engine for the development of LaTeX 2e, in the
-immediate future; as a result, LaTeX programmers may (in all
-current TeX distributions) assume e-TeX functionality.
-Development versions of e-TeX are to be found in the TeX live
-source repository.
+An extended version of TeX (capable of running as if it were unmodified
+TeX). E-TeX has been specified by the LaTeX team as the base engine for
+LaTeX2e. Thus, LaTeX programmers may assume e-TeX functionality, along
+with additional extensions. The pdftex engine and others directly
+incorporate the e-TeX extensions. The etex program in most distributions
+is an incarnation of pdftex running in DVI mode. The development source
+for e-TeX is the TeX Live source repository, although further extensions
+have taken place in the pdftex and other engine sources, keeping e-TeX
+stable.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/fonts/source/public/etex/xbmc10.mf
-%{_texmfdistdir}/fonts/tfm/public/etex/xbmc10.tfm
-%{_texmfdistdir}/tex/plain/etex/etex.src
-%{_texmfdistdir}/tex/plain/etex/etexdefs.lib
-%doc %{_texmfdistdir}/doc/etex/base/NTS-FAQ
-%doc %{_texmfdistdir}/doc/etex/base/etex_gen.tex
-%doc %{_texmfdistdir}/doc/etex/base/etex_man.pdf
-%doc %{_texmfdistdir}/doc/etex/base/etex_man.sty
-%doc %{_texmfdistdir}/doc/etex/base/etex_man.tex
-%doc %{_texmfdistdir}/doc/etex/base/etex_ref.html
-%doc %{_texmfdistdir}/doc/etex/base/etex_src.html
-%doc %{_texmfdistdir}/doc/etex/base/legal.html
-%doc %{_texmfdistdir}/doc/etex/base/nts-group.html
-%doc %{_texmfdistdir}/doc/etex/base/webmerge.tex
-%doc %{_mandir}/man1/etex.1*
-%doc %{_texmfdistdir}/doc/man/man1/etex.man1.pdf
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar fonts tex doc %{buildroot}%{_texmfdistdir}
-mkdir -p %{buildroot}%{_mandir}/man1
-mv %{buildroot}%{_texmfdistdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
